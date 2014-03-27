@@ -1,16 +1,45 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="horizontal"
     tools:context=".ControllerActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <com.jonnygold.nxtcarcontroller.PedalView
+        android:id="@+id/view_break_pedal"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_launcher" />
+    
+    <LinearLayout 
+	    android:layout_height="match_parent"
+	    android:layout_width="0dp"
+	    android:layout_weight="0.6"
+	    android:orientation="vertical" >
+	    
+        	<com.jonnygold.nxtcarcontroller.SelectorView
+		        android:id="@+id/view_ignition"
+		        android:layout_height="0dp"
+		        android:layout_width="match_parent"
+		        android:layout_weight="0.5"
+		        android:src="@drawable/ic_launcher" />
+        	
+        	<com.jonnygold.nxtcarcontroller.SelectorView
+		        android:id="@+id/view_shifter"
+		        android:layout_height="0dp"
+		        android:layout_width="match_parent"
+		        android:layout_weight="0.5"
+		        android:src="@drawable/ic_launcher" />
+        
+	</LinearLayout>
+    
+    <com.jonnygold.nxtcarcontroller.PedalView
+        android:id="@+id/view_accelerator_pedal"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_launcher"
+        />
 
-</RelativeLayout>
+</LinearLayout>

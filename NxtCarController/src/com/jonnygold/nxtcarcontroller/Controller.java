@@ -2,6 +2,7 @@ package com.jonnygold.nxtcarcontroller;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Observable;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -13,7 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
-public final class Controller{
+public final class Controller extends Observable{
 
 	private static String TAG = "Controller";
 	
@@ -48,7 +49,7 @@ public final class Controller{
 	
 	private Context context;
 	
-	private ConnectionState state;
+	private volatile ConnectionState state;
 	
 	/*
 	 * Inner classes
@@ -143,7 +144,7 @@ public final class Controller{
 			outStream.write(signal);
 			outStream.flush();
 		}
-		
+				
 	}
 	
 	/*
@@ -205,7 +206,7 @@ public final class Controller{
 		}
 		return false;
 	}
-	
+		
 	private BluetoothDevice findBoundedNxt(){
     	Log.w(TAG, "Searching in bounded devices...");
     	for(BluetoothDevice boundedDevice : btAdapter.getBondedDevices() ){
@@ -224,6 +225,9 @@ public final class Controller{
 			throw new NullPointerException("Connection state can't be null");
 		}
 		state = newState;
+		setChanged();
+		notifyObservers();
+		clearChanged();
 	}
 	
 }
